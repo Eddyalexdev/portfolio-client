@@ -15,20 +15,24 @@ const Tooltip = ({data}: TooltipProps) => {
 
   useEffect(() => {
     const handleMouseMovement = (e: any) => {
-      console.log(e.clientY)
-      setMouseY(e.clientY)
+      setMouseY(e.pageY)
     }
 
     window.addEventListener('mousemove', handleMouseMovement)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMovement)
+    }
   }, [])
 
   return (
     <motion.div 
-      className={`w-full fixed`}
+      className={`w-full fixed h-auto`}
       animate={{y: mouseY}}
+      transition={{type: "tween", duration: 0.3}}
     >
-      <h2 className="border-b text-5xl">{data.title}</h2>
-      <p className="text-sm pt-2">{data.date}</p>
+      <h2 className="border-b text-5xl text-white p-2">{data.title}</h2>
+      <p className="text-m p-2 text-white">{data.date}</p>
     </motion.div>
   )
 }

@@ -8,13 +8,9 @@ const Projects = () => {
   const [data, setData] = useState({title: '', date: ''})
 
   return (
-    <main className="col-span-9 relative">
+    <main className="col-span-9 relative h-screen overflow-auto bg-black">
       <Tooltip data={data}/>
       <ul className="w-full grid gap-2 place-items-center h-full">
-        <Project setData={setData} />
-        <Project setData={setData} />
-        <Project setData={setData} />
-        <Project setData={setData} />
         <Project setData={setData} />
         <Project setData={setData} />
         <Project setData={setData} />
