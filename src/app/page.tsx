@@ -1,5 +1,4 @@
 "use client"
-import Container from "@/components/Container";
 import Link from "next/link";
 import {AiOutlineGithub, AiOutlineInstagram, AiOutlineLinkedin} from 'react-icons/ai'
 import {motion} from 'framer-motion'
@@ -7,7 +6,7 @@ import {motion} from 'framer-motion'
 export default function Home() {
   return (
     <>
-      <section className="w-full h-screen grid place-items-center">
+      <div className="w-full h-screen grid place-items-center">
         <div>
         </div>
         <div className="relative z-10 text-center">
@@ -49,7 +48,7 @@ export default function Home() {
             </motion.li>
           </ul>
         </div>
-      </section>
+      </div>
     </>
   )
 }

@@ -10,10 +10,12 @@ const Container = ({children}: ContainerProps) => {
     <>
       <Cursor />
       <main className="relative w-full">
-        <div className="w-full h-full min-h-screen absolute z-[0]">
+        <div className="w-full h-full min-h-screen absolute z-[0] max-md:py-20">
           <Model3D />
         </div>
-        {children}
+        <section className="max-md:px-5">
+          {children}
+        </section>
       </main>
     </>
   )

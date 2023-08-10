@@ -9,8 +9,8 @@ const Projects = () => {
 
   return (
     <>
-      <section className="relative grid place-items-center h-screen overflow-auto">
-        <div className="relative w-[80%] h-[80%] overflow-auto">
+      <section className="relative grid place-items-center w-full h-screen overflow-auto">
+        <div className="relative w-[80%] h-[80%] overflow-auto max-md:w-full">
           <div className="w-full h-full bg-black lack z-0 absolute opacity-[.7] border boder-white"></div>
           <Tooltip data={data}/>
           <ul className="w-full grid gap-2 relative z-10 place-items-center h-full">

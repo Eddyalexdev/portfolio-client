@@ -13,23 +13,14 @@ export function SpaceModel(props: any) {
   const ref = useRef() as any;
   const projectsRef = useRef() as any;
   const cameraRef = useRef() as any;
+  const aboutRef = useRef() as any;
   const planetRef = useRef() as any;
   const refWaves = useRef() as any;
+  const textRef = useRef() as any;
   const [scale, setScale] = useState(100)
   const [isHover, setIsHover] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
-  const {camera, gl} = useThree()
-
-  useSpring({
-    from: {
-      z: 300
-    },
-    z: 2,
-    onFrame: ({z}: any) => {
-      camera.position.z = z
-    }
-  })
 
   useFrame((state) => {
     ref.current.rotation.y += 0.001
@@ -37,8 +28,24 @@ export function SpaceModel(props: any) {
 
     if(pathname !== "/projects" && isHover !== true) {
       projectsRef.current.rotation.y += 0.001
-      return null
-    }     
+    }  
+
+    switch(pathname) {
+      case "/projects":
+        state.camera.position.lerp(new Vector3(5, 20, 11),.01)
+        state.camera.updateMatrix()
+        break
+      case "/about":
+        state.camera.lookAt(new Vector3(aboutRef.current.position.x, aboutRef.current.position.y + 2, aboutRef.current.position.z))
+        state.camera.position.lerp(new Vector3(aboutRef.current.position.x + 2, aboutRef.current.position.y + 4, aboutRef.current.position.z + 4), .1)
+        state.camera.updateMatrix()
+        break
+      default:
+        state.camera.lookAt(new Vector3(0, 0, 0))
+        state.camera.position.lerp(new Vector3(5, 10, 11),.1)
+        state.camera.updateMatrix()
+        break
+    }
 
     if(isHover) {
       planetRef.current.rotation.z += 0.006
@@ -61,9 +68,10 @@ export function SpaceModel(props: any) {
             whileHover={{ scale: 110}}
             rotation={[-Math.PI / 2, 0, 0]} 
             scale={scale}
+            ref={aboutRef}
             onClick={() => router.push('/about')}
           >
-            <Html position={[-.2, -1, 5]}>
+            <Html ref={textRef} position={[-.2, -1, 5]}>
               <div className="p-2 w-[100px]">
                 <h2 className="text-white">About Me!</h2>
               </div>
