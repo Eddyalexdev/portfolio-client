@@ -9,8 +9,8 @@ const Container = ({children}: ContainerProps) => {
   return (
     <>
       <Cursor />
-      <main className="relative bg-black w-full">
-        <div className="w-full h-full absolute z-[0]">
+      <main className="relative w-full">
+        <div className="w-full h-full min-h-screen absolute z-[0]">
           <Model3D />
         </div>
         {children}

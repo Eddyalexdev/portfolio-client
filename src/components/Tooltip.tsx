@@ -27,8 +27,8 @@ const Tooltip = ({data}: TooltipProps) => {
 
   return (
     <motion.div 
-      className={`w-full fixed h-auto`}
-      animate={{y: mouseY}}
+      className={`absolute left-0 w-full`}
+      animate={{y: mouseY - 120}}
       transition={{type: "tween", duration: 0.3}}
     >
       <h2 className="border-b text-5xl text-white p-2">{data.title}</h2>

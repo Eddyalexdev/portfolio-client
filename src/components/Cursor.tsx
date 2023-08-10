@@ -7,6 +7,7 @@ const Cursor = () => {
   return (
     <AnimatedCursor 
       color='192, 192, 192'
+      trailingSpeed={10}
     />
   )
 }

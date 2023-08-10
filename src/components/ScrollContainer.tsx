@@ -9,7 +9,7 @@ interface ScrollContainerProps {
 const ScrollContainer = ({children, ref}: ScrollContainerProps) => {
   return (
     <motion.main 
-      className="col-span-9 bg-black"
+      className="col-span-9 bg-white min-h-screen"
       ref={ref}
     >
       {children}
