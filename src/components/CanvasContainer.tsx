@@ -10,7 +10,6 @@ const CanvasContainer = ({children}: CanvasContainerProps) => {
   return (
     <>
       <Canvas>
-        <OrbitControls enableRotate={false} enableZoom={false} enableDamping={false} enablePan={false}/>
         <Stars count={1000} fade={true} />
         {children}
       </Canvas>

@@ -32,7 +32,8 @@ export function SpaceModel(props: any) {
 
     switch(pathname) {
       case "/projects":
-        state.camera.position.lerp(new Vector3(5, 20, 11),.01)
+        state.camera.lookAt(new Vector3(projectsRef.current.position.x, projectsRef.current.position.y, projectsRef.current.position.z))
+        state.camera.position.lerp(new Vector3(projectsRef.current.position.x + 0, 5, projectsRef.current.position.z + 4),.1)
         state.camera.updateMatrix()
         break
       case "/about":
@@ -94,7 +95,6 @@ export function SpaceModel(props: any) {
               scale={[100, 100, 1.891]} />
 
             <mesh ref={refWaves} geometry={nodes.waves_Material002_0.geometry} material={materials['Material.002']} rotation={[-Math.PI / 2, 0, 0]} scale={[100, 100, 1.891]} />
-
             <group ref={ref}>
               <group position={[-357.404, 392.646, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={39.706}>
                 <mesh geometry={nodes.Sphere002_Material001_0.geometry} material={materials['Material.001']} />

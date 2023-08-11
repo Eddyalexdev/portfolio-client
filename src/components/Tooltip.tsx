@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import {motion} from 'framer-motion'
+import {motion, useMotionValue, useSpring} from 'framer-motion'
 
 interface TooltipProps {
   data: {
@@ -11,11 +11,11 @@ interface TooltipProps {
 }
 
 const Tooltip = ({data}: TooltipProps) => {
-  const [mouseY, setMouseY] = useState(0)
+  const y = useMotionValue(0)
 
   useEffect(() => {
     const handleMouseMovement = (e: any) => {
-      setMouseY(e.pageY)
+      y.set(e.pageY - 150)
     }
 
     window.addEventListener('mousemove', handleMouseMovement)
@@ -28,8 +28,7 @@ const Tooltip = ({data}: TooltipProps) => {
   return (
     <motion.div 
       className={`absolute left-0 w-full`}
-      animate={{y: mouseY - 120}}
-      transition={{type: "tween", duration: 0.3}}
+      style={{y}}
     >
       <h2 className="border-b text-5xl text-white p-2">{data.title}</h2>
       <p className="text-m p-2 text-white">{data.date}</p>

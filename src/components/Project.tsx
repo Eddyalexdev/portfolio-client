@@ -41,22 +41,22 @@ const Project = ({setData}: ProjectProps) => {
           <div className="relative grid place-items-center">
             <motion.img 
               className={`max-w-xs ${hover ? 'saturate-100' : 'saturate-0'} transition-all relative z-10`} 
-              src="https://cdn.pixabay.com/photo/2023/03/21/12/21/anime-wallpaper-7867145_640.jpg" 
+              src=""
               alt="" 
-              layoutId={"https://cdn.pixabay.com/photo/2023/03/21/12/21/anime-wallpaper-7867145_640.jpg"}
+              layoutId={""}
             />
             <motion.img 
               variants={variants}
               animate={!hover ? 'center':'right'}
               className={`max-w-xs transition-all absolute`} 
-              src="https://cdn.pixabay.com/photo/2023/03/21/12/21/anime-wallpaper-7867145_640.jpg" 
+              src=""
               alt="" 
             />
             <motion.img 
               variants={variants}
               animate={!hover ? 'center':'left'}
               className={`max-w-xs transition-all absolute`} 
-              src="https://cdn.pixabay.com/photo/2023/03/21/12/21/anime-wallpaper-7867145_640.jpg" 
+              src=""
               alt="" 
             />
           </div>

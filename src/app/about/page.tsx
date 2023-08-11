@@ -18,8 +18,8 @@ const About = () => {
             animate={{height: 'auto'}}
             className="overflow-hidden col-span-5 bg-black relative opacity-75 row-span-2">
             <div className="p-4 border border-white w-full h-full">
-              <div className="flex flex-col gap-2 items-start">
-                <Link className="text-white" href="/">
+              <div className="flex flex-col gap-2">
+                <Link className="text-white text-lg text-right" href="/">
                   <BsArrowLeft />
                 </Link>
                 <h1 className="text-white text-2xl mb-2">About Me!</h1>
