@@ -1,6 +1,5 @@
-import { OrbitControls, Stars } from "@react-three/drei"
-import { Canvas, useThree } from "@react-three/fiber"
-import { MotionCanvas } from "framer-motion-3d"
+import { Stars } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
 
 interface CanvasContainerProps {
   children: React.ReactNode,

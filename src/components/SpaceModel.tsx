@@ -5,8 +5,8 @@ import { Html, OrbitControls, OrthographicCamera, PerspectiveCamera, Text, useGL
 import { useFrame, useThree } from '@react-three/fiber'
 import { MotionCanvas, motion } from 'framer-motion-3d'
 import { usePathname, useRouter } from 'next/navigation'
-import { useSpring } from '@react-spring/three' 
 import { Vector3 } from 'three'
+import NebulosaModel from './NebulosaModel'
 
 export function SpaceModel(props: any) {
   const { nodes, materials } = useGLTF('/scene.gltf') as any
@@ -15,6 +15,7 @@ export function SpaceModel(props: any) {
   const cameraRef = useRef() as any;
   const aboutRef = useRef() as any;
   const planetRef = useRef() as any;
+  const sphereRef = useRef() as any;
   const refWaves = useRef() as any;
   const textRef = useRef() as any;
   const [scale, setScale] = useState(100)
@@ -26,14 +27,14 @@ export function SpaceModel(props: any) {
     ref.current.rotation.y += 0.001
     refWaves.current.rotation.z -= 0.0005
 
+    console.log(sphereRef.current.position)
     if(pathname !== "/projects" && isHover !== true) {
       projectsRef.current.rotation.y += 0.001
     }  
 
     switch(pathname) {
       case "/projects":
-        state.camera.lookAt(new Vector3(projectsRef.current.position.x, projectsRef.current.position.y, projectsRef.current.position.z))
-        state.camera.position.lerp(new Vector3(projectsRef.current.position.x + 0, 5, projectsRef.current.position.z + 4),.1)
+        state.camera.position.lerp(new Vector3(aboutRef.current.position.x + 2, aboutRef.current.position.y + 4, aboutRef.current.position.z + 4), .1)
         state.camera.updateMatrix()
         break
       case "/about":
@@ -64,6 +65,7 @@ export function SpaceModel(props: any) {
         fov={65} 
       />
       <group>
+        <NebulosaModel />
         <group scale={0.01}>
           <motion.group 
             whileHover={{ scale: 110}}
@@ -139,6 +141,7 @@ export function SpaceModel(props: any) {
             <motion.group
             >
               <motion.mesh 
+                ref={sphereRef}
                 geometry={nodes.Sphere001_Material002_0.geometry} 
                 material={materials['Material.002']} 
                 position={[375.469, 427.948, 0]} 
