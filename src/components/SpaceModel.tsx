@@ -3,10 +3,9 @@
 import React, { useRef, useState } from 'react'
 import { Html, OrbitControls, OrthographicCamera, PerspectiveCamera, Text, useGLTF, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { MotionCanvas, motion } from 'framer-motion-3d'
+import { motion } from 'framer-motion-3d'
 import { usePathname, useRouter } from 'next/navigation'
 import { Vector3 } from 'three'
-import NebulosaModel from './NebulosaModel'
 
 export function SpaceModel(props: any) {
   const { nodes, materials } = useGLTF('/scene.gltf') as any
@@ -27,7 +26,6 @@ export function SpaceModel(props: any) {
     ref.current.rotation.y += 0.001
     refWaves.current.rotation.z -= 0.0005
 
-    console.log(sphereRef.current.position)
     if(pathname !== "/projects" && isHover !== true) {
       projectsRef.current.rotation.y += 0.001
     }  
@@ -65,7 +63,6 @@ export function SpaceModel(props: any) {
         fov={65} 
       />
       <group>
-        <NebulosaModel />
         <group scale={0.01}>
           <motion.group 
             whileHover={{ scale: 110}}

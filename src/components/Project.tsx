@@ -5,17 +5,21 @@ import { Dispatch, SetStateAction, useState } from "react"
 import {motion} from 'framer-motion'
 
 interface ProjectProps {
-  setData: Dispatch<SetStateAction<{title: string, date: string}>>
+  setData: Dispatch<SetStateAction<{title: string, date: string}>>,
+  title: string,
+  date: string,
+  image: string,
+  images: string[]
 }
 
-const Project = ({setData}: ProjectProps) => {
+const Project = ({setData, title, date, image, images}: ProjectProps) => {
   const [hover, setHover] = useState(false)
 
   const handleHover = () => {
     setHover(true)
     setData({
-      title: 'hola 100',
-      date: '2020-23'
+      title: title,
+      date: date 
     })
   }
 
@@ -41,24 +45,22 @@ const Project = ({setData}: ProjectProps) => {
           <div className="relative grid place-items-center">
             <motion.img 
               className={`max-w-xs ${hover ? 'saturate-100' : 'saturate-0'} transition-all relative z-10`} 
-              src=""
+              src={image}
               alt="" 
-              layoutId={""}
+              layoutId={image}
             />
-            <motion.img 
-              variants={variants}
-              animate={!hover ? 'center':'right'}
-              className={`max-w-xs transition-all absolute`} 
-              src=""
-              alt="" 
-            />
-            <motion.img 
-              variants={variants}
-              animate={!hover ? 'center':'left'}
-              className={`max-w-xs transition-all absolute`} 
-              src=""
-              alt="" 
-            />
+            {
+              images &&
+              images.map((image: string) => (
+                <motion.img 
+                  variants={variants}
+                  animate={!hover ? 'center':'right'}
+                  className={`max-w-xs transition-all absolute`} 
+                  src={image}
+                  alt="" 
+                />
+              ))
+            }
           </div>
         </div>
       </Link>
