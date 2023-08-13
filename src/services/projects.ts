@@ -3,7 +3,21 @@ import axios from 'axios'
 const url = process.env.API_URL || "http://localhost:8080/api"
 
 const getProjects = async () => {
-  return await axios.get(`${url}/projects`)
+  const projects = await axios.get(`${url}/projects`)
+  return projects.data
 }
 
-export {getProjects}
+const  getProject = async (id: string) => {
+  const language = await axios.get(`${url}/projects/${id}`)
+  return language.data
+}
+
+const createProject = async (data: any) => {
+  return await axios.post(`${url}/projects`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
+
+export {getProjects, createProject, getProject}

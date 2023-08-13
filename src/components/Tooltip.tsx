@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import {motion, useMotionValue, useSpring} from 'framer-motion'
+import { useEffect } from "react"
+import {motion, useMotionValue} from 'framer-motion'
 
 interface TooltipProps {
   data: {
@@ -27,10 +27,15 @@ const Tooltip = ({data}: TooltipProps) => {
 
   return (
     <motion.div 
-      className={`absolute left-0 w-full`}
+      className={`absolute left-0 w-full overflow-hidden`}
       style={{y}}
     >
-      <h2 className="border-b text-5xl text-white p-2">{data.title}</h2>
+      <motion.h2 
+        className="text-5xl text-white p-2 w-full"
+      >
+          {data.title}
+      </motion.h2>
+      <div className="bg-white w-full h-[1px]"></div>
       <p className="text-m p-2 text-white">{data.date}</p>
     </motion.div>
   )

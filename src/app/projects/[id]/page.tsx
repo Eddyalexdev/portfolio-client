@@ -1,17 +1,14 @@
 "use client"
-import {motion, useScroll, useSpring} from 'framer-motion'
-import { useRef } from 'react'
+import useConsult from '@/hooks/useConsult'
+import { getProject } from '@/services/projects'
+import {motion} from 'framer-motion'
+import { useParams } from 'next/navigation'
 
 const SingleProject = () => {
-  const ref = useRef(null)
-  const {scrollXProgress} = useScroll({container: ref})
+  const {id} = useParams()
+  const {data, loading} = useConsult({consult: getProject(`${id}`), dependency: `${id}`})
 
-  const scaleY = useSpring(scrollXProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
-
+  console.log(data)
   return (
     <>
       <section className="h-screen grid place-items-center w-full relative">

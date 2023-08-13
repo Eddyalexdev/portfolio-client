@@ -8,11 +8,13 @@ interface ProjectProps {
   setData: Dispatch<SetStateAction<{title: string, date: string}>>,
   title: string,
   date: string,
-  image: string,
-  images: string[]
+  images: string[],
+  setColor: Dispatch<SetStateAction<string>>,
+  color: string,
+  id: string
 }
 
-const Project = ({setData, title, date, image, images}: ProjectProps) => {
+const Project = ({setData, title, date, images, setColor, color, id}: ProjectProps) => {
   const [hover, setHover] = useState(false)
 
   const handleHover = () => {
@@ -21,45 +23,48 @@ const Project = ({setData, title, date, image, images}: ProjectProps) => {
       title: title,
       date: date 
     })
+    setColor(color)
+  }
+
+  const handleLeave = () => {
+    setHover(false)
+    setData({
+      title: '',
+      date: ''
+    })
+    setColor('#000000')
   }
 
   const variants = {
     center: {
-      rotate: 0,
-      x: 0
+      y: 0,
     },
     right: {
-      rotate: -10,
-      x: -30
+      y: -40
     },
     left: {
-      rotate: 10,
-      x: 30
+      y: -20
     },
   }
 
   return (
-    <li onMouseEnter={handleHover} onMouseLeave={() => setHover(false)} className="w-full relative z-[100]">
-      <Link href="/projects/100">
+    <li onMouseEnter={handleHover} onMouseLeave={handleLeave} className="w-full relative z-[100]">
+      <Link href={`/projects/${id}`}>
         <div className="w-full flex items-end justify-end pr-20">
           <div className="relative grid place-items-center">
-            <motion.img 
-              className={`max-w-xs ${hover ? 'saturate-100' : 'saturate-0'} transition-all relative z-10`} 
-              src={image}
-              alt="" 
-              layoutId={image}
-            />
             {
               images &&
-              images.map((image: string) => (
-                <motion.img 
-                  variants={variants}
-                  animate={!hover ? 'center':'right'}
-                  className={`max-w-xs transition-all absolute`} 
-                  src={image}
-                  alt="" 
-                />
-              ))
+              images.map((image: string, index: number) => {
+                switch (index) {
+                  case 0:
+                    return <motion.img variants={variants} className={`max-h-[200px] object-cover max-w-xs transition-all ${hover ? 'saturate-100':'saturate-0'} relative z-10`} layoutId={image} src={image} alt="" />
+                  case 1:
+                    return <motion.img variants={variants} animate={!hover ? 'center':'left'} className={`max-h-[200px] object-cover max-w-xs transition-all ${hover ? 'saturate-100':'saturate-0'} absolute`} layoutId={image} src={image} alt="" />
+                  case 2:
+                    return <motion.img variants={variants} animate={!hover ? 'center':'right'} className={`max-h-[200px] object-cover max-w-xs transition-all ${hover ? 'saturate-100':'saturate-0'} absolute`} layoutId={image} src={image} alt="" />
+                  default:
+                    return
+              }})
             }
           </div>
         </div>
