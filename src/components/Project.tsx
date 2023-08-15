@@ -28,10 +28,6 @@ const Project = ({setData, title, date, images, setColor, color, id}: ProjectPro
 
   const handleLeave = () => {
     setHover(false)
-    setData({
-      title: '',
-      date: ''
-    })
     setColor('#000000')
   }
 

@@ -10,7 +10,7 @@ import {motion, useAnimationFrame, useMotionValue, useTime, useTransform} from '
 const About = () => {
   return (
     <>
-      <section className="w-full h-screen grid place-items-center relative z-10">
+      <motion.section style={{x: 200}} className="w-full h-screen grid place-items-center relative z-10">
         <div className="grid grid-cols-6 grid-rows-3 relative">
           <motion.div initial={{opacity: 0}} animate={{opacity: .4}} transition={{delay: .8}} className="opacity-[.4] bg-gradient-to-r from-white to-white absolute bg-white -inset-0.5 blur-md"></motion.div>
           <motion.div 
@@ -99,7 +99,7 @@ const About = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   )
 }

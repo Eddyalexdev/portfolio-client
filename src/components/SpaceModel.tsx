@@ -76,25 +76,40 @@ export function SpaceModel(props: any) {
                 <h2 className="text-white">About Me!</h2>
               </div>
             </Html>
-            <mesh geometry={nodes.body_Material001_0.geometry} material={materials['Material.001']} />
-            <mesh geometry={nodes.body_Material002_0.geometry} material={materials['Material.002']} />
+            <motion.group animate={{x: pathname === '/about' ? -2:0, rotateZ: pathname === '/about' ? .5:0, y: pathname === '/about' ? -1.5:0}} >
+              <mesh geometry={nodes.body_Material001_0.geometry} material={materials['Material.001']} />
+              <mesh geometry={nodes.body_Material002_0.geometry} material={materials['Material.002']} />
+            </motion.group>
           </motion.group>
 
           <motion.group transition={{type: "spring"}}>
+            <motion.group animate={{y: pathname !== '/' ? 2000:0}}>
+              <motion.mesh 
+                geometry={nodes.waves1_Material002_0.geometry} material={materials['Material.002']} 
+                rotation={[-Math.PI / 2, 0, 0]} 
+                scale={[100, 100, 1.891]} 
+              />
+              <motion.mesh 
+                geometry={nodes.waves2_Material002_0.geometry} material={materials['Material.002']} 
+                position={[92.464, 15.529, 2.112]} 
+                rotation={[-Math.PI / 2, 0, 0]} 
+                scale={[100, 100, 1.891]} />
+            </motion.group>
+
             <motion.mesh 
-              geometry={nodes.waves1_Material002_0.geometry} material={materials['Material.002']} 
+              initial={{y: 0}}
+              animate={{y: pathname !== '/' ? -2000 : 0}}
+              ref={refWaves} 
+              geometry={nodes.waves_Material002_0.geometry} 
+              material={materials['Material.002']} 
               rotation={[-Math.PI / 2, 0, 0]} 
               scale={[100, 100, 1.891]} 
             />
-
-            <motion.mesh 
-              geometry={nodes.waves2_Material002_0.geometry} material={materials['Material.002']} 
-              position={[92.464, 15.529, 2.112]} 
-              rotation={[-Math.PI / 2, 0, 0]} 
-              scale={[100, 100, 1.891]} />
-
-            <mesh ref={refWaves} geometry={nodes.waves_Material002_0.geometry} material={materials['Material.002']} rotation={[-Math.PI / 2, 0, 0]} scale={[100, 100, 1.891]} />
-            <group ref={ref}>
+            <motion.group
+              initial={{y: 0}}
+              animate={{y: pathname !== '/' ? 2000 : 0}}
+              ref={ref}
+            >
               <group position={[-357.404, 392.646, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={39.706}>
                 <mesh geometry={nodes.Sphere002_Material001_0.geometry} material={materials['Material.001']} />
                 <mesh geometry={nodes.Sphere002_Material002_0.geometry} material={materials['Material.002']} />
@@ -118,10 +133,12 @@ export function SpaceModel(props: any) {
               <mesh geometry={nodes.Sphere011_Material002_0.geometry} material={materials['Material.002']} position={[-553.462, 331.074, -379.067]} rotation={[-Math.PI / 2, 0, 0]} scale={11.437} />
               <mesh geometry={nodes.Sphere003_Material002_0.geometry} material={materials['Material.002']} position={[-357.404, 392.646, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={41.075} />
               <mesh geometry={nodes.Sphere008_Material002_0.geometry} material={materials['Material.002']} position={[199.634, 566.883, -221.001]} rotation={[-Math.PI / 2, 0, 0]} scale={41.075} />
-            </group>
+            </motion.group>
 
           </motion.group>
           <motion.group
+            initial={{y: -150}}
+            animate={{y: pathname !== '/' ? 2000:-150}}
             ref={projectsRef}
             onClick={() => router.push('/projects')}
             onPointerEnter={() => setIsHover(true)}
