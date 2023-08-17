@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.5",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.80.1",
     "@react-three/fiber": "^8.13.6",

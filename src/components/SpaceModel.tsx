@@ -1,14 +1,18 @@
 "use client"
 
 import React, { useRef, useState } from 'react'
-import { Html, OrbitControls, OrthographicCamera, PerspectiveCamera, Text, useGLTF, useScroll } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
+import { PerspectiveCamera, useGLTF } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 import { motion } from 'framer-motion-3d'
 import { usePathname, useRouter } from 'next/navigation'
 import { Vector3 } from 'three'
+import useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
 
 export function SpaceModel(props: any) {
   const { nodes, materials } = useGLTF('/scene.gltf') as any
+  const [scale, setScale] = useState(100)
+  const [isHover, setIsHover] = useState(false)
+  const [inProjects, setInProjects] = useState(false)
   const ref = useRef() as any;
   const projectsRef = useRef() as any;
   const cameraRef = useRef() as any;
@@ -17,24 +21,26 @@ export function SpaceModel(props: any) {
   const sphereRef = useRef() as any;
   const refWaves = useRef() as any;
   const textRef = useRef() as any;
-  const [scale, setScale] = useState(100)
-  const [isHover, setIsHover] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
+
+  const isMobile = useMediaQuery('(max-width:750px)')
 
   useFrame((state) => {
     ref.current.rotation.y += 0.001
     refWaves.current.rotation.z -= 0.0005
 
-    if(pathname !== "/projects" && isHover !== true) {
+    if(isHover !== true) {
       projectsRef.current.rotation.y += 0.001
     }  
 
+    if(pathname.includes('/projects')) {
+      state.camera.lookAt(new Vector3(aboutRef.current.position.x, aboutRef.current.position.y + 2, aboutRef.current.position.z))
+      state.camera.position.lerp(new Vector3(aboutRef.current.position.x + 2, aboutRef.current.position.y + 30, aboutRef.current.position.z + 2), .1)
+      state.camera.updateMatrix()
+    }
+
     switch(pathname) {
-      case "/projects":
-        state.camera.position.lerp(new Vector3(aboutRef.current.position.x + 2, aboutRef.current.position.y + 4, aboutRef.current.position.z + 4), .1)
-        state.camera.updateMatrix()
-        break
       case "/about":
         state.camera.lookAt(new Vector3(aboutRef.current.position.x, aboutRef.current.position.y + 2, aboutRef.current.position.z))
         state.camera.position.lerp(new Vector3(aboutRef.current.position.x + 2, aboutRef.current.position.y + 4, aboutRef.current.position.z + 4), .1)
@@ -71,19 +77,14 @@ export function SpaceModel(props: any) {
             ref={aboutRef}
             onClick={() => router.push('/about')}
           >
-            <Html ref={textRef} position={[-.2, -1, 5]}>
-              <div className="p-2 w-[100px]">
-                <h2 className="text-white">About Me!</h2>
-              </div>
-            </Html>
-            <motion.group animate={{x: pathname === '/about' ? -2:0, rotateZ: pathname === '/about' ? .5:0, y: pathname === '/about' ? -1.5:0}} >
+            <motion.group animate={{scale: pathname === '/about' && isMobile ?  .6 : 1 ,x: pathname === '/about' && !isMobile ? -2: isMobile && pathname ==='/about' ? .6:0, rotateZ: pathname === '/about' && !isMobile ? .5 : 0, y: pathname === '/about' ? -1.5 : 0, z: pathname === '/about' && isMobile ? 2 : 0}} >
               <mesh geometry={nodes.body_Material001_0.geometry} material={materials['Material.001']} />
               <mesh geometry={nodes.body_Material002_0.geometry} material={materials['Material.002']} />
             </motion.group>
           </motion.group>
 
           <motion.group transition={{type: "spring"}}>
-            <motion.group animate={{y: pathname !== '/' ? 2000:0}}>
+            <motion.group animate={{y: pathname === '/about' ? 2000:0}}>
               <motion.mesh 
                 geometry={nodes.waves1_Material002_0.geometry} material={materials['Material.002']} 
                 rotation={[-Math.PI / 2, 0, 0]} 
@@ -98,7 +99,7 @@ export function SpaceModel(props: any) {
 
             <motion.mesh 
               initial={{y: 0}}
-              animate={{y: pathname !== '/' ? -2000 : 0}}
+              animate={{y: pathname === '/about' ? -2000 : 0}}
               ref={refWaves} 
               geometry={nodes.waves_Material002_0.geometry} 
               material={materials['Material.002']} 
@@ -107,7 +108,7 @@ export function SpaceModel(props: any) {
             />
             <motion.group
               initial={{y: 0}}
-              animate={{y: pathname !== '/' ? 2000 : 0}}
+              animate={{y: pathname === '/about' ? 2000 : 0}}
               ref={ref}
             >
               <group position={[-357.404, 392.646, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={39.706}>
@@ -138,7 +139,7 @@ export function SpaceModel(props: any) {
           </motion.group>
           <motion.group
             initial={{y: -150}}
-            animate={{y: pathname !== '/' ? 2000:-150}}
+            animate={{y: pathname === '/about' ? 2000:-150}}
             ref={projectsRef}
             onClick={() => router.push('/projects')}
             onPointerEnter={() => setIsHover(true)}
@@ -146,12 +147,6 @@ export function SpaceModel(props: any) {
             whileHover={{scale:1.05}}
             position={[0, -150, 0]}
           >
-            <Html position={[375.469, 527.948, 0]}>
-              <div className="bg-white p-2 py-1 rounded-md relative">
-                <h2 className="text-black text-xs">Projects</h2>
-                <div className="bg-white w-[7px] h-[7px] absolute z-0 left-1 bottom-[-1px] rotate-45"></div>
-              </div>
-            </Html>
             <motion.group
             >
               <motion.mesh 

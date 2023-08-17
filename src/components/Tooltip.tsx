@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import {motion, useMotionValue} from 'framer-motion'
+import {motion, useMotionValue, useSpring} from 'framer-motion'
 
 interface TooltipProps {
   data: {
@@ -11,7 +11,7 @@ interface TooltipProps {
 }
 
 const Tooltip = ({data}: TooltipProps) => {
-  const y = useMotionValue(0)
+  const y = useSpring(0)
 
   useEffect(() => {
     const handleMouseMovement = (e: any) => {
@@ -31,12 +31,12 @@ const Tooltip = ({data}: TooltipProps) => {
       style={{y}}
     >
       <motion.h2 
-        className="text-5xl text-white p-2 w-full"
+        className="text-5xl text-white p-2 w-full pl-4"
       >
-          {data.title}
+          {data?.title}
       </motion.h2>
       <div className="bg-white w-full h-[1px]"></div>
-      <p className="text-m p-2 text-white">{data.date}</p>
+      <p className="text-m p-2 pl-4 text-white">{data?.date}</p>
     </motion.div>
   )
 }

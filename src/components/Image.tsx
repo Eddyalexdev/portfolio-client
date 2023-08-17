@@ -7,7 +7,7 @@ const Image = ({image}: {image: string}) => {
 
   return <motion.img 
     animate={{opacity: imageCharged ? 1:.2}}
-    className="object-cover w-full h-full"
+    className="w-full h-full object-cover"
     onLoad={() => setImageCharged(true)}
     src={image}
     alt="" 
