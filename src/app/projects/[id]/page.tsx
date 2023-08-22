@@ -1,46 +1,24 @@
 "use client"
 import { Image } from '@/components'
+import MouseAnimated from '@/components/MouseAnimated'
 import useConsult from '@/hooks/useConsult'
 import { getProject } from '@/services/projects'
-import {motion, useScroll} from 'framer-motion'
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
 import { useParams } from 'next/navigation'
+import { useRef } from 'react'
 
 const SingleProject = () => {
   const {id} = useParams()
   const {data, loading} = useConsult({consult: getProject(`${id}`), dependency: `${id}`})
-  const {scrollX} = useScroll()
+  const containerRef = useRef(null)
+  const ref = useRef(null)
 
   return (
     <>
-      <section className="h-screen grid place-items-center w-full relative">
-        <div className={`border border-white w-[90%] grid relative gap-2`}>
+      <section ref={ref} className="h-screen grid place-items-center w-full">
+
+        <div className={`border border-white w-[80%] grid grid-rows-2 gap-2`}>
           <motion.div initial={{opacity: 0}} animate={{opacity: .8, background: '#000000'}} className={`absolute -inset-0.5`}></motion.div>
-          <div className="flex w-full overflow-hidden">
-            <motion.div initial={{translateX: 0}} animate={{translateX: '-100%'}} transition={{repeat: Infinity, duration: 25, ease: 'linear'}} className="flex relative w-full">
-              {
-                loading ?
-                <span>Loading...</span>
-                :
-                data.images.map((image: string) => 
-                  <div key={image} className="min-w-[500px] h-[300px] bg-white">
-                    <Image image={image} />
-                  </div>
-                )
-              }
-            </motion.div>
-            <motion.div initial={{translateX: 0}} animate={{translateX: '-100%'}} transition={{repeat: Infinity, duration: 25, ease: 'linear'}} className="flex relative w-full">
-              {
-                loading ?
-                <span>Loading...</span>
-                :
-                data.images.map((image: string) => 
-                  <div key={image} className="min-w-[500px] h-[300px] bg-white">
-                    <Image image={image} />
-                  </div>
-                )
-              }
-            </motion.div>
-          </div>
           <div className="p-5 relative">
             <div className="mb-6 border-b border-white">
               <h2 className="text-white text-4xl">{data.title}</h2>
@@ -51,7 +29,7 @@ const SingleProject = () => {
                 !loading &&
                 data.languages.map((language: any) => (
                   <li key={language.slug} className="flex flex-col items-center border border-white p-3 gap-1 saturate-0 hover:saturate-100 transition-all">
-                    <div className="w-[25px] h-[25px] md:w-[40px] md:h-[40px]">
+                    <div className="w-[25px] h-[25px] md:w-[32px] md:h-[32px]">
                       <img src={language.image} className="w-full h-full object-contain" alt=""/>
                     </div>
                     <span className="text-white text-xs">{language.slug}</span>
@@ -59,7 +37,24 @@ const SingleProject = () => {
                 ))
               }
             </ul>
-            <p className="text-white text-sm md:text-md">{data.description}</p>
+            <p className="text-white text-md md:text-md mb-4">{data.description}</p>
+            <MouseAnimated />
+          </div>
+
+          <div className="w-full overflow-hidden">
+            <motion.div ref={containerRef} className="flex gap-4 px-2">
+                {
+                  loading ?
+                  <span>Loading...</span>
+                  :
+                  data.images.map((image: string) => 
+                    <Image key={image} image={image} />
+                  )
+                }
+            </motion.div>
+          </div>
+
+          <div className="">
           </div>
         </div>
       </section>

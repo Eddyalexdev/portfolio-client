@@ -10,7 +10,7 @@ interface useConsultProps {
 const useConsult = ({consult, dependency}: useConsultProps) => {
   const [data, setData] = useState([]) as any
   const [loading, setLoading] = useState(true)
-  const response = useMemo(async () => await consult, [])
+  const response = useMemo(async () => await consult, [dependency])
 
   response
     .then((item: any) => { 

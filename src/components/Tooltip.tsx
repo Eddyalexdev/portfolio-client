@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import {motion, useMotionValue, useSpring} from 'framer-motion'
+import {motion, useSpring} from 'framer-motion'
 
 interface TooltipProps {
   data: {
@@ -15,7 +15,7 @@ const Tooltip = ({data}: TooltipProps) => {
 
   useEffect(() => {
     const handleMouseMovement = (e: any) => {
-      y.set(e.pageY - 150)
+      y.set(e.pageY - 480)
     }
 
     window.addEventListener('mousemove', handleMouseMovement)

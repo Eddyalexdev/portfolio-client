@@ -5,12 +5,14 @@ import { AiOutlineMail, AiOutlineWhatsApp } from "react-icons/ai"
 import { BsArrowLeft } from "react-icons/bs"
 import { SiLaravel } from "react-icons/si"
 import { BiLogoAws, BiLogoDocker, BiLogoGithub, BiLogoKubernetes, BiLogoNodejs, BiLogoPhp, BiLogoPython, BiLogoReact, BiLogoRedux, BiLogoSass, BiLogoSkype, BiLogoTailwindCss, BiLogoTypescript, BiLogoWordpress } from "react-icons/bi"
-import {motion, motionValue, useAnimationFrame, useMotionValue, useTime, useTransform} from 'framer-motion'
+import {motion, motionValue} from 'framer-motion'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import { useTranslation } from "react-i18next"
 
 const About = () => {
   const isMobile = useMediaQuery('(max-width:750px)')
   const x = motionValue(200)
+  const {t} = useTranslation("global")
 
   if (isMobile) x.set(0)
 
@@ -28,10 +30,12 @@ const About = () => {
                 <Link className="text-white text-lg text-right" href="/">
                   <BsArrowLeft />
                 </Link>
-                <h1 className="text-white text-2xl mb-2">About Me!</h1>
+                <div className="flex items-center justify-between">
+                  <h1 className="text-white text-2xl mb-2">{t('about.title')}</h1>
+                </div>
               </div>
               <p className="text-white max-w-[550px] max-md:text-sm">
-                Nice to meet you, my name is Eddy and I am a web developer with over 4 years of experience. I am very passionate about the world of software development, and thanks to that passion, I have been able to make significant progress in the field. Over these years, I have learned a lot, mostly through projects as a freelancer.
+                {t("about.body")}
               </p>
             </div>
           </motion.div>
@@ -149,7 +153,7 @@ const About = () => {
             transition={{delay: .4}}
             className="overflow-hidden col-span-5 -mt-[1px] relative bg-black opacity-75 row-span-1">
             <div className="border border-white w-full h-full p-4">
-              <h2 className="text-white uppercase mb-2">Contact With Me!</h2>
+              <h2 className="text-white uppercase mb-2">{t("about.footer")}</h2>
               <ul className="grid gap-1">
                 <li className="text-white"><Link target="_blank" href="mailto:eddyalex.dev@gmail.com" className="flex items-center gap-2 underline"><AiOutlineMail /> Eddyalex.dev@gmail.com</Link></li>
                 <li className="text-white"><Link target="_blank" href="https://api.whatsapp.com/send?phone=59179536443" className="flex items-center gap-2 underline"><AiOutlineWhatsApp /> +591 79536443</Link></li>

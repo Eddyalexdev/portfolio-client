@@ -1,0 +1,10 @@
+{
+  "about": {
+    "title": "About Me!",
+    "body": "Nice to meet you, my name is Eddy and I am a web developer with over 4 years of experience. I am very passionate about the world of software development, and thanks to that passion, I have been able to make significant progress in the field. Over these years, I have learned a lot, mostly through projects as a freelancer.",
+    "footer": "Contact With Me!"
+  },
+  "home": {
+    "title": "Full Stack Developer"
+  }
+}

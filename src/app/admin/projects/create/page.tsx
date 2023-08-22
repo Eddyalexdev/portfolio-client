@@ -12,9 +12,13 @@ const CreateProject = () => {
   const [languages, setLanguages] = useState<Array<string>>([])
 
   const handleCreateProject = (data: any) => {
+    const description = {
+      es: data.description_es,
+      en: data.description_en
+    }
     const formData = new FormData()
     formData.append('title', data.title)
-    formData.append('description', data.description)
+    formData.append('description', JSON.stringify(description))
     formData.append('link', data.link)
     formData.append('date', data.date)
     formData.append('color', data.color)
@@ -60,7 +64,11 @@ const CreateProject = () => {
         </div>
         <label className="text-white flex flex-col gap-2">
           <span>description:</span>
-          <textarea {...register('description')} className="border bg-transparent"></textarea>
+          <textarea {...register('description_en')} className="border bg-transparent"></textarea>
+        </label>
+        <label className="text-white flex flex-col gap-2">
+          <span>description es:</span>
+          <textarea {...register('description_es')} className="border bg-transparent"></textarea>
         </label>
         <label className="text-white flex flex-col gap-2">
           <span>fecha del proyecto:</span>

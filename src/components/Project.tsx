@@ -64,11 +64,11 @@ const Project = ({setData, title, date, images, setColor, color, id}: ProjectPro
                 images.map((image: string, index: number) => {
                   switch (index) {
                     case 0:
-                      return <motion.img whileHover={{scale: 1.2}} variants={variants} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all relative z-10`} layoutId={image} src={image} alt="" />
+                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all relative z-10`} src={image} alt="" />
                     case 1:
-                      return <motion.img whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'left'} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} layoutId={image} src={image} alt="" />
+                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'left'} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} src={image} alt="" />
                     case 2:
-                      return <motion.img whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'right'} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} layoutId={image} src={image} alt="" />
+                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'right'} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} src={image} alt="" />
                     default:
                       return
                 }})

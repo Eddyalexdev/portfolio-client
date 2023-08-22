@@ -12,7 +12,6 @@ export function SpaceModel(props: any) {
   const { nodes, materials } = useGLTF('/scene.gltf') as any
   const [scale, setScale] = useState(100)
   const [isHover, setIsHover] = useState(false)
-  const [inProjects, setInProjects] = useState(false)
   const ref = useRef() as any;
   const projectsRef = useRef() as any;
   const cameraRef = useRef() as any;
@@ -20,7 +19,6 @@ export function SpaceModel(props: any) {
   const planetRef = useRef() as any;
   const sphereRef = useRef() as any;
   const refWaves = useRef() as any;
-  const textRef = useRef() as any;
   const router = useRouter()
   const pathname = usePathname()
 

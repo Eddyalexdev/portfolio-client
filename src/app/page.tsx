@@ -2,8 +2,11 @@
 import Link from "next/link";
 import {AiOutlineGithub, AiOutlineInstagram, AiOutlineLinkedin} from 'react-icons/ai'
 import {motion} from 'framer-motion'
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const {t} = useTranslation('global')
+
   return (
     <>
       <div className="w-full h-screen grid place-items-center">
@@ -20,7 +23,7 @@ export default function Home() {
             initial={{opacity: 0, y: 100}}
             animate={{opacity: 1, y: 0}}
             transition={{delay: .5}}
-            className="text-white text-xl mb-2">Full Stack Developer</motion.h2>
+            className="text-white text-xl mb-2">{t('home.title')}</motion.h2>
           <ul className="flex gap-2 items-center justify-center -ml-5">
             <motion.li 
               initial={{opacity: 0, y: 100}}
