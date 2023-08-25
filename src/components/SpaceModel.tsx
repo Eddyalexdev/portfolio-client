@@ -22,7 +22,7 @@ export function SpaceModel(props: any) {
   const router = useRouter()
   const pathname = usePathname()
 
-  const isMobile = useMediaQuery('(max-width:750px)')
+  const isMobile = useMediaQuery('(max-width:950px)')
 
   useFrame((state) => {
     ref.current.rotation.y += 0.001

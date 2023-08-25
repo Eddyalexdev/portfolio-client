@@ -8,18 +8,29 @@ import { BiLogoAws, BiLogoDocker, BiLogoGithub, BiLogoKubernetes, BiLogoNodejs, 
 import {motion, motionValue} from 'framer-motion'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTranslation } from "react-i18next"
+import { useRouter } from "next/navigation"
 
 const About = () => {
   const isMobile = useMediaQuery('(max-width:750px)')
+  const isTablet = useMediaQuery('(max-width:950px)')
   const x = motionValue(200)
   const {t} = useTranslation("global")
+  const router = useRouter()
 
-  if (isMobile) x.set(0)
+  if (isTablet) x.set(0)
+
+  const handleChangePage = (e: any) => {
+    if (e.deltaY > 0) {
+      router.push('/projects')
+    } else {
+      router.push('/')
+    } 
+  }
 
   return (
     <>
-      <motion.section style={{x}} className="w-full h-screen grid place-items-center relative z-10">
-        <div className="grid grid-cols-6 grid-rows-3 relative">
+      <motion.section onWheel={handleChangePage} onTouchMove={handleChangePage} style={{x}} className="w-full h-screen grid place-items-center relative z-10">
+        <div className="grid sm:grid-cols-6 sm:grid-rows-3 relative">
           <motion.div initial={{opacity: 0}} animate={{opacity: .4}} transition={{delay: .8}} className="opacity-[.4] bg-gradient-to-r from-white to-white absolute bg-white -inset-0.5 blur-md"></motion.div>
           <motion.div 
             initial={{height: 0}}
@@ -43,14 +54,14 @@ const About = () => {
             initial={{width: 0}}
             animate={{width: '100%'}}
             transition={{delay: .6}}
-            className="relative bg-black opacity-75 col-span-1 row-span-3 -ml-[1px] overflow-hidden"
+            className="relative bg-black opacity-75 sm:col-span-1 sm:row-span-3 -ml-[1px] overflow-hidden"
           >
-            <div className="p-4 border border-white max-h-[400px] overflow-hidden grid gap-6">
+            <div className="p-4 border border-white max-h-[400px] overflow-hidden flex sm:grid gap-6">
               <motion.ul 
-                initial={{translateY: 0}}
-                animate={{translateY: '-100%'}}
+                initial={{y: 0, x: 0}}
+                animate={{y: isMobile ? 0 : '-100%', x: isMobile ? '-100%' : 0}}
                 transition={{repeat: Infinity, duration: 25, ease: 'linear'}}
-                className="flex flex-col items-center gap-6 justify-center"
+                className="flex sm:flex-col items-center gap-6 justify-center"
               >
                 <li className="text-white text-3xl">
                   <BiLogoTypescript />
@@ -96,10 +107,10 @@ const About = () => {
                 </li>
               </motion.ul>
               <motion.ul 
-                initial={{translateY: 0}}
-                animate={{translateY: '-100%'}}
+                initial={{y: 0, x: 0}}
+                animate={{y: isMobile ? 0 : '-100%', x: isMobile ? '-100%' : 0}}
                 transition={{repeat: Infinity, duration: 25, ease: 'linear'}}
-                className="flex flex-col items-center gap-6 justify-center"
+                className="flex sm:flex-col items-center gap-6 justify-center"
               >
                 <li className="text-white text-3xl">
                   <BiLogoTypescript />

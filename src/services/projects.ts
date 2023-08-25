@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = process.env.API_URL || "http://localhost:8080/api"
+const url = process.env.API_URL || "http://localhost:4040/api"
 
 const getProjects = async () => {
   const projects = await axios.get(`${url}/projects`)

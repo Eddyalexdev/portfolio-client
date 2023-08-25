@@ -18,7 +18,7 @@ const Projects = ({data, loading}: ProjectsProps) => {
   return (
     <>
       <motion.div initial={{opacity: 0}} style={{background: color}} animate={{opacity: .3}} className={`absolute -inset-0.5`}></motion.div>
-      <ul className="w-full grid gap-2 relative z-10 place-items-center h-full">
+      <ul className="w-full grid gap-20 relative z-10 place-items-center max-h-[80vh] overflow-auto h-full py-10">
         <Tooltip data={projectInfo}/>
         {
           data && !loading &&

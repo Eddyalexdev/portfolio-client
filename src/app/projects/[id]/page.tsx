@@ -3,22 +3,36 @@ import { Image } from '@/components'
 import MouseAnimated from '@/components/MouseAnimated'
 import useConsult from '@/hooks/useConsult'
 import { getProject } from '@/services/projects'
-import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import { useParams } from 'next/navigation'
-import { useRef } from 'react'
+import { use, useRef, useState } from 'react'
+import { AiOutlineArrowRight } from 'react-icons/ai'
 
 const SingleProject = () => {
   const {id} = useParams()
   const {data, loading} = useConsult({consult: getProject(`${id}`), dependency: `${id}`})
+  const [viewAnimation, setViewAnimation] = useState(false)
   const containerRef = useRef(null)
-  const ref = useRef(null)
+  const x = useSpring(1)
 
   return (
-    <>
-      <section ref={ref} className="h-screen grid place-items-center w-full">
+      <section className="h-screen grid place-items-center w-full bg-black">
 
-        <div className={`border border-white w-[80%] grid grid-rows-2 gap-2`}>
-          <motion.div initial={{opacity: 0}} animate={{opacity: .8, background: '#000000'}} className={`absolute -inset-0.5`}></motion.div>
+          <div className="w-full overflow-hidden relative">
+            <motion.div style={{x}} ref={containerRef} className="flex gap-4 px-2">
+                {
+                  loading ?
+                  <span>Loading...</span>
+                  :
+                  data.images.map((image: string) => 
+                    <Image key={image} image={image} />
+                  )
+                }
+            </motion.div>
+          </div>
+
+        <motion.div className={`border border-white w-[750px] fixed`}>
+          <motion.div initial={{opacity: 0}} animate={{opacity: .8, background: '#000000'}} className={`absolute -inset-0.5 blur-smjjjk`}></motion.div>
           <div className="p-5 relative">
             <div className="mb-6 border-b border-white">
               <h2 className="text-white text-4xl">{data.title}</h2>
@@ -37,28 +51,15 @@ const SingleProject = () => {
                 ))
               }
             </ul>
-            <p className="text-white text-md md:text-md mb-4">{data.description}</p>
-            <MouseAnimated />
+            <p className="text-white text-md md:text-md">{data.description}</p>
+            <div className='w-full flex justify-end'>
+              <button className='text-white underline text-center flex items-center gap-2'>View Animation <AiOutlineArrowRight /> </button>
+            </div>
           </div>
 
-          <div className="w-full overflow-hidden">
-            <motion.div ref={containerRef} className="flex gap-4 px-2">
-                {
-                  loading ?
-                  <span>Loading...</span>
-                  :
-                  data.images.map((image: string) => 
-                    <Image key={image} image={image} />
-                  )
-                }
-            </motion.div>
-          </div>
+        </motion.div>
 
-          <div className="">
-          </div>
-        </div>
       </section>
-    </>
   )
 }
 

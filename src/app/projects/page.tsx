@@ -3,14 +3,22 @@
 import useConsult from "@/hooks/useConsult"
 import { getProjects } from "@/services/projects"
 import { Projects as AllProjects } from "@/components"
+import { useRouter } from "next/navigation"
 
 const Projects = () => {
   const {loading, data} = useConsult({consult: getProjects()})
+  const router = useRouter()
+
+  const handleChangePage = (e: any) => {
+    if(e.deltaY < 0) {
+      router.push('/about')
+    }
+  }
 
   return (
     <>
-      <section className="relative grid place-items-center w-full h-screen overflow-auto">
-        <div className="relative w-[80%] h-[80%] overflow-auto max-md:w-full">
+      <section onWheel={handleChangePage} className="relative grid place-items-center w-full h-screen">
+        <div className="relative w-[80%] overflow-hidden h-[80%] max-md:w-full">
           <div className="w-full h-full bg-black lack z-0 absolute opacity-[.7] border border-white"></div>
           <AllProjects loading={loading} data={data} />
         </div>

@@ -14,10 +14,10 @@ const Image = ({image}: {image: string}) => {
   const scale = useTransform(scrollXProgress, [0, .5, 1], [1, 2, 1])
 
   return (
-    <motion.div className="min-w-[450px] h-[350px] left-0 top-0 relative z-10">
+    <motion.div className="min-w-[550px] h-[550px] left-0 top-0 relative z-10">
       {
         !imageCharged &&
-        <div className="w-full h-full bg-gray-50 text-bg-gray-50 grid place-items-center">
+        <div className="w-full h-full bg-gray-50 text-bg-gray-50 grid place-items-center absolute">
           <BsCardImage color="grey" />
         </div>
       }
@@ -25,8 +25,8 @@ const Image = ({image}: {image: string}) => {
       <motion.img 
         ref={ref}
         style={{scale}}
-        animate={{opacity: imageCharged ? 1:0}}
-        className="w-full h-full object-cover"
+        animate={{opacity: imageCharged ? 1:.2}}
+        className="w-full h-full object-cover relative z-20"
         onLoad={() => setImageCharged(true)}
         src={image}
         alt="" 

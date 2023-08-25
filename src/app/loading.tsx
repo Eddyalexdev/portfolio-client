@@ -1,8 +1,11 @@
+"use client"
+import {motion} from 'framer-motion'
+
 const Loading = () => {
   return (
-    <div className="w-full h-[5px] relative top-0 left-0 bg-white">
-      <div className="w-[50%] absolute left-0 top-0 bg-[#b3f] h-full"></div>
-    </div>
+    <motion.div className="w-full h-[5px] relative top-0 left-0 bg-black">
+      <motion.div initial={{x: -100}} animate={{x: 0}} exit={{x: -100}} transition={{type: Infinity}} className='w-[20px] h-full bg-white absolute left-0 top-0' />
+    </motion.div>
   )
 }
 
