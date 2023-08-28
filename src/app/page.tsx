@@ -52,7 +52,7 @@ export default function Home() {
               <Link href="https://www.linkedin.com/in/eddy-chambi-6111901a6/" target="_blank"><AiOutlineLinkedin /></Link>
             </motion.li>
           </ul>
-          <MouseAnimated />
+          <MouseAnimated text="About"/>
         </div>
       </div>
   )

@@ -40,7 +40,9 @@ const Project = ({setData, title, date, images, setColor, color, id}: ProjectPro
       rotateZ: 20,
       x: 40,
       transition: {
-        delay: .4
+        delay: .4,
+        duration: .2,
+        ease: 'linear'
       }
     },
     left: {
@@ -48,7 +50,9 @@ const Project = ({setData, title, date, images, setColor, color, id}: ProjectPro
       x: -30,
       rotateZ: -20,
       transition: {
-        delay: .2
+        delay: .2,
+        duration: .2,
+        ease: 'linear'
       }
     },
   }

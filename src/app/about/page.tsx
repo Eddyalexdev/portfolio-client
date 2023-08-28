@@ -9,6 +9,7 @@ import {motion, motionValue} from 'framer-motion'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTranslation } from "react-i18next"
 import { useRouter } from "next/navigation"
+import MouseAnimated from "@/components/MouseAnimated"
 
 const About = () => {
   const isMobile = useMediaQuery('(max-width:750px)')
@@ -38,16 +39,14 @@ const About = () => {
             className="overflow-hidden col-span-5 bg-black relative opacity-75 row-span-2">
             <div className="p-4 border border-white w-full h-full">
               <div className="flex flex-col gap-2">
-                <Link className="text-white text-lg text-right" href="/">
-                  <BsArrowLeft />
-                </Link>
                 <div className="flex items-center justify-between">
                   <h1 className="text-white text-2xl mb-2">{t('about.title')}</h1>
                 </div>
               </div>
-              <p className="text-white max-w-[550px] max-md:text-sm">
+              <p className="text-white max-w-[550px] max-md:text-sm mb-4">
                 {t("about.body")}
               </p>
+              <MouseAnimated text="portfolio" textRight="home"/>
             </div>
           </motion.div>
           <motion.div 
