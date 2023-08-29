@@ -1,12 +1,14 @@
 FROM node:18.17.0-alpine
 
-WORKDIR /app
+WORKDIR /usr/portfolio/app
 
 COPY ./package.json .
 
 RUN npm i -g pnpm
-RUN pnpm i
+RUN pnpm i --production
 
 COPY . .
 
-CMD ["pnpm", "dev"]
+RUN pnpm build
+
+CMD ["pnpm", "start"]

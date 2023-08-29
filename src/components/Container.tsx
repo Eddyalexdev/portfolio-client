@@ -6,6 +6,7 @@ import global_es from '@/translations/es/global.json'
 import i18next from "i18next"
 import {I18nextProvider} from 'react-i18next'
 import ChangeLanguage from "./ChangeLanguage"
+import Navigation from "./Navigation"
 
 interface ContainerProps {
   children: React.ReactNode
@@ -28,6 +29,7 @@ const Container = ({children}: ContainerProps) => {
 
   return (
     <I18nextProvider i18n={i18next}>
+      <Navigation />
       <ChangeLanguage />
       <Cursor />
       <main className="relative w-full">
