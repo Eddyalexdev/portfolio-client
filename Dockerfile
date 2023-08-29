@@ -5,7 +5,7 @@ WORKDIR /usr/portfolio/app
 COPY ./package.json .
 
 RUN npm i -g pnpm
-RUN pnpm i --production
+RUN pnpm i
 
 COPY . .
 
