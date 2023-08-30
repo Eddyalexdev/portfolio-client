@@ -9,12 +9,11 @@ import { Vector3 } from 'three'
 import useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
 
 export function SpaceModel(props: any) {
-  const { nodes, materials } = useGLTF('/scene.gltf') as any
+  const { nodes, materials } = useGLTF('/models/scene.gltf') as any
   const [scale, setScale] = useState(100)
   const [isHover, setIsHover] = useState(false)
   const ref = useRef() as any;
   const projectsRef = useRef() as any;
-  const cameraRef = useRef() as any;
   const aboutRef = useRef() as any;
   const planetRef = useRef() as any;
   const sphereRef = useRef() as any;
@@ -60,12 +59,6 @@ export function SpaceModel(props: any) {
 
   return (
     <>
-      <PerspectiveCamera 
-        ref={cameraRef} 
-        makeDefault
-        position={[5, 10, 11]}
-        fov={65} 
-      />
       <group>
         <group scale={0.01}>
           <motion.group 
@@ -166,4 +159,4 @@ export function SpaceModel(props: any) {
   )
 }
 
-useGLTF.preload('/scene.gltf')
+useGLTF.preload('/models/scene.gltf')

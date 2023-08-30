@@ -1,18 +1,18 @@
 "use client"
 
 import { Suspense } from "react"
-import { SpaceModel } from "./SpaceModel"
-import CanvasContainer from "./CanvasContainer"
-import { Preload } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
+import { Stars } from "@react-three/drei"
+import { SpaceModel } from "@/components/SpaceModel"
 
 const Model3D = () => {
   return (
-    <CanvasContainer>
+    <Canvas camera={{position: [5, 10, 11], fov: 60}}>
+      <Stars count={800} fade={true} />
       <Suspense fallback={null}>
         <SpaceModel />
       </Suspense>
-      <Preload all />
-    </CanvasContainer>
+    </Canvas>
   )
 }
 

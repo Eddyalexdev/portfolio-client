@@ -1,37 +1,16 @@
-"use client"
-import Model3D from "@/components/Model3D"
-import { Cursor } from "."
-import global_en from '@/translations/en/global.json'
-import global_es from '@/translations/es/global.json'
-import i18next from "i18next"
-import {I18nextProvider} from 'react-i18next'
-import ChangeLanguage from "./ChangeLanguage"
-import Navigation from "./Navigation"
+import dynamic from "next/dynamic"
+import Language from "./Language"
+
+const Model3D = dynamic(() => import('@/components/Model3D'), {loading: () => <p className="text-white">Loading...</p>})
 
 interface ContainerProps {
   children: React.ReactNode
 }
 
-i18next.init({
-  interpolation: {escapeValue: false},
-  lng: "en",
-  resources: {
-    en: {
-      global: global_en
-    },
-    es: {
-      global: global_es
-    }
-  }
-})
-
 const Container = ({children}: ContainerProps) => {
 
   return (
-    <I18nextProvider i18n={i18next}>
-      <Navigation />
-      <ChangeLanguage />
-      <Cursor />
+    <Language>
       <main className="relative w-full">
         <div className="w-full h-full min-h-screen absolute z-[0] max-md:py-20">
           <Model3D />
@@ -40,7 +19,7 @@ const Container = ({children}: ContainerProps) => {
           {children}
         </section>
       </main>
-    </I18nextProvider>
+    </Language>
   )
 }
 
