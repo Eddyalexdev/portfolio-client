@@ -21,11 +21,14 @@ const About = () => {
   if (isTablet) x.set(0)
 
   const handleChangePage = (e: any) => {
-    if (e.deltaY > 0) {
-      router.push('/projects')
-    } else {
-      router.push('/')
-    } 
+    if(e.deltaY) {
+      if (e.deltaY > 0) {
+        router.push('/projects')
+      } else {
+        router.push('/')
+      } 
+      return
+    }
   }
 
   return (

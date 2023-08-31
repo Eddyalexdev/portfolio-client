@@ -5,19 +5,21 @@ import {motion} from 'framer-motion'
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import MouseAnimated from "@/components/MouseAnimated";
+import { useRef } from "react";
 
 export default function Home() {
   const {t} = useTranslation('global')
   const router = useRouter()
 
   const handleChangePage = (e: any) => {
+
     if(e.deltaY > 0) {
       router.push('about')
     }
   }
 
   return (
-      <div onWheel={handleChangePage} className="w-full h-screen grid place-items-center relative">
+      <div onWheel={handleChangePage} onTouchMove={handleChangePage} className="w-full h-screen grid place-items-center relative">
         <div>
         </div>
         <div className="relative z-10 text-center">
