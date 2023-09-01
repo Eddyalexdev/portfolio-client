@@ -1,7 +1,6 @@
 import { Image } from '@/components'
 import {animate, motion, useAnimationControls, useMotionTemplate, useMotionValue, useSpring, useTime, useTransform, useWillChange} from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import {IoMdArrowBack} from 'react-icons/io'
 
 interface Props {
     data: string[],
@@ -12,7 +11,6 @@ const CarrouselImages = ({data, loading}: Props) => {
     const [fullImage, setFullImage] = useState('')
     const imagesRef = useRef(null) as any
     const [isActivated, setIsActivated] = useState(false)
-    const value = useMotionValue('0%')
 
     const controls = useAnimationControls()
 
@@ -44,7 +42,7 @@ const CarrouselImages = ({data, loading}: Props) => {
                 <motion.img className='w-full object-contain' src={fullImage} alt="" />
             </div>
 
-            <div className="w-full relative col-span-6 overflow-hidden max-lg:hidden">
+            <div className="w-full relative col-span-6 overflow-hidden max-xl:hidden">
                 <motion.div onMouseEnter={() => controls.start({x: isActivated ? '-95%' : '0%'})} onMouseLeave={() => controls.stop()} animate={controls} transition={{duration: 8, type: 'spring'}} onMouseMove={handleMouseHover}  ref={imagesRef} className="flex h-[250px] w-full px-2">
                     {
                         loading ?

@@ -3,7 +3,7 @@ import axios from 'axios'
 const url = process.env.API_URL || "https://portfolio-server-pcv6.onrender.com/api"
 
 const getProjects = async () => {
-  const projects = await fetch(`${url}/projects`, {cache: 'force-cache', next: { revalidate: 60 }})
+  const projects = await fetch(`${url}/projects`, {next: { revalidate: 60 }})
   return projects.json()
 }
 
