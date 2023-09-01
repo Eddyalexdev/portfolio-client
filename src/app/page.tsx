@@ -5,7 +5,6 @@ import {motion} from 'framer-motion'
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import MouseAnimated from "@/components/MouseAnimated";
-import { useRef } from "react";
 
 export default function Home() {
   const {t} = useTranslation('global')
