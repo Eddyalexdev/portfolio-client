@@ -61,22 +61,26 @@ const Project = ({setData, title, date, images, setColor, color, id}: ProjectPro
     <>
       <li onMouseEnter={handleHover} onMouseLeave={handleLeave} className="w-full relative z-[100]">
         <Link href={`/projects/${id}`}>
-          <div className="w-full flex items-end justify-end pr-20">
-            <div className="relative grid place-items-center">
+          <div className="w-full flex lg:items-end lg:justify-end lg:pr-20 max-lg:items-center max-lg:gap-2 max-lg:pl-5">
+            <div className="relative grid lg:place-items-center">
               {
                 images &&
                 images.map((image: string, index: number) => {
                   switch (index) {
                     case 0:
-                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all relative z-10`} src={image} alt="" />
+                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} className={`shadow max-lg:h-[150px] lg:max-h-[200px] h-full object-cover max-w-xs transition-all relative z-10`} src={image} alt="" />
                     case 1:
-                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'left'} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} src={image} alt="" />
+                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'left'} className={`max-lg:hidden shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} src={image} alt="" />
                     case 2:
-                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'right'} className={`shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} src={image} alt="" />
+                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'right'} className={`max-lg:hidden shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} src={image} alt="" />
                     default:
                       return
                 }})
               }
+            </div>
+            <div className="flex flex-col p-2 lg:hidden">
+              <h3 className="text-white text-xl font-bold">{title}</h3>
+              <span className="text-white">{date}</span>
             </div>
           </div>
         </Link>

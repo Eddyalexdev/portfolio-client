@@ -2,8 +2,8 @@ import { Language } from "@/types/languages.type"
 import axios from 'axios'
 
 const allLanguages = async () => {
-  const languages = await axios.get('https://portfolio-server-pcv6.onrender.com/api/languages')
-  return languages.data
+  const languages = await fetch('https://portfolio-server-pcv6.onrender.com/api/languages', {next: {revalidate: 60}})
+  return languages.json()
 }
 
 const createLanguages = async (data: any) => {

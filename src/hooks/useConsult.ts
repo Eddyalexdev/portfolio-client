@@ -12,12 +12,14 @@ const useConsult = ({consult, dependency}: useConsultProps) => {
   const [loading, setLoading] = useState(true)
   const response = useMemo(async () => await consult, [dependency])
 
-  response
-    .then((item: any) => { 
-      setData(item)
-      setLoading(false)
-    })
-    .catch((error) => new Error(error))
+  useEffect(() => {
+    response
+      .then((item: any) => { 
+        setData(item)
+        setLoading(false)
+      })
+      .catch((error) => new Error(error))
+  }, [])
 
   return {loading, data}
 }

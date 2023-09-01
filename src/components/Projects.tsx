@@ -21,7 +21,7 @@ const Projects = ({data, loading}: ProjectsProps) => {
       <ul className="w-full grid gap-20 relative z-10 place-items-center max-h-[80vh] overflow-auto h-full py-10">
         <Tooltip data={projectInfo}/>
         {
-          data &&
+          data && !loading &&
           data.map((project: any) => <Project id={project._id} color={project.color} setColor={setColor} key={project._id} setData={setProjectInfo} title={project.title} date={project.date} images={project.images} />)
         }
       </ul>

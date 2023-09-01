@@ -40,11 +40,11 @@ const CarrouselImages = ({data, loading}: Props) => {
 
     return (
         <>
-            <div className='col-span-4 h-[500px] overflow-auto border-b border-white p-5'>
+            <div className='col-span-4 lg:h-[500px] overflow-auto border-b border-white p-5'>
                 <motion.img className='w-full object-contain' src={fullImage} alt="" />
             </div>
 
-            <div className="w-full relative col-span-6 overflow-hidden">
+            <div className="w-full relative col-span-6 overflow-hidden max-lg:hidden">
                 <motion.div onMouseEnter={() => controls.start({x: isActivated ? '-95%' : '0%'})} onMouseLeave={() => controls.stop()} animate={controls} transition={{duration: 8, type: 'spring'}} onMouseMove={handleMouseHover}  ref={imagesRef} className="flex h-[250px] w-full px-2">
                     {
                         loading ?

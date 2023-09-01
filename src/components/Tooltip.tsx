@@ -27,7 +27,7 @@ const Tooltip = ({data}: TooltipProps) => {
 
   return (
     <motion.div 
-      className={`absolute left-0 w-full overflow-hidden`}
+      className={`absolute left-0 w-full overflow-hidden max-lg:hidden`}
       style={{y}}
     >
       <motion.h2 

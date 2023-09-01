@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation"
 import MouseAnimated from "@/components/MouseAnimated"
 
 const Projects = () => {
-  const {loading, data} = useConsult({consult: getProjects()})
   const router = useRouter()
+  const {data, loading} = useConsult({consult: getProjects()})
 
   const handleChangePage = (e: any) => {
     if(e.deltaY < 0) {
@@ -24,7 +24,7 @@ const Projects = () => {
           <div className="pt-4">
             <MouseAnimated textRight="about" />
           </div>
-          <AllProjects loading={loading} data={data} />
+          <AllProjects data={data} loading={loading} />
         </div>
       </section>
     </>

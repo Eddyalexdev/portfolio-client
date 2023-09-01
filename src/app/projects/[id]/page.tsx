@@ -1,6 +1,5 @@
 "use client"
 import CarrouselImages from '@/components/CarrouselImages'
-import MouseAnimated from '@/components/MouseAnimated'
 import useConsult from '@/hooks/useConsult'
 import { getProject } from '@/services/projects'
 import { motion } from 'framer-motion'
@@ -9,19 +8,18 @@ import { useParams, useRouter } from 'next/navigation'
 const SingleProject = () => {
   const {id} = useParams()
   const {data, loading} = useConsult({consult: getProject(`${id}`), dependency: `${id}`})
-  const router = useRouter()
 
   return (
-      <section className="h-screen w-full relative md:p-20">
+      <section className="h-screen w-full relative md:p-20 max-lg:grid max-lg:place-content-center">
         <motion.div initial={{opacity: 0}} animate={{opacity: .9, background: '#000000'}} className={`absolute -inset-0.5`}></motion.div>
-        <div className='border border-white relative grid grid-cols-6'>
+        <div className='border border-white relative flex flex-col-reverse lg:grid grid-cols-6'>
           <motion.div className={`col-span-2 border-b border-r border-white`}>
-            <div className='p-5 relative'>
-              <div className="mb-6 border-b border-white">
+            <div className='p-3 lg:p-5 relative'>
+              <div className="mb-4 lg:mb-6 border-b border-white">
                 <h2 className="text-white text-4xl">{data.title}</h2>
                 <h3 className="text-white">{data.date}</h3>
               </div>
-              <ul className="flex items-center flex-wrap gap-4 mb-4">
+              <ul className="flex items-center flex-wrap gap-2 lg:gap-4 mb-4">
                 {
                   !loading &&
                   data.languages.map((language: any, i: number) => (
