@@ -13,7 +13,9 @@ export default function Home() {
   const handleChangePage = (e: any) => {
 
     if(e.deltaY > 0) {
-      router.push('about')
+      setTimeout(() => {
+        router.push('about')
+      }, 100)
     }
   }
 

@@ -22,16 +22,22 @@ const Projects = ({data, loading}: ProjectsProps) => {
   return (
     <>
       <motion.div initial={{opacity: 0}} style={{background: '#000000'}} animate={{opacity: .3}} className={`absolute -inset-0.5`}></motion.div>
-      <ul className="w-full grid gap-20 relative z-10 place-items-center max-h-[80vh] overflow-auto h-full py-10">
-        <Tooltip data={projectInfo}/>
-        {
-          loading ?
-          <Loading />
+      {
+        loading ?
+          <div className='relative z-10 w-full h-full grid place-items-center'>
+            <Loading />
+          </div>
           :
-          data &&
-          data.map((project: any) => <Project id={project._id} color={project.color} setColor={setColor} key={project._id} setData={setProjectInfo} title={project.title} date={project.date} images={project.images} />)
-        }
-      </ul>
+          <div className="w-full max-h-[80vh] overflow-auto py-10 pb-20">
+            <Tooltip data={projectInfo}/>
+              <ul className="w-full grid gap-20 relative z-10 place-items-center h-full">
+                {
+                  data &&
+                  data.map((project: any) => <Project id={project._id} color={project.color} setColor={setColor} key={project._id} setData={setProjectInfo} title={project.title} date={project.date} images={project.images} />)
+                }
+              </ul>
+          </div>
+      }
     </>
   )
 }

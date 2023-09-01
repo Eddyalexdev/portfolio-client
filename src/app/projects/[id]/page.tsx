@@ -6,13 +6,18 @@ import { getProject } from '@/services/projects'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 const SingleProject = () => {
   const {id} = useParams()
   const {data, loading} = useConsult({consult: getProject(`${id}`), dependency: `${id}`})
+  const {i18n} = useTranslation("global")
 
-  if(loading) return <div className="h-screen w-full grid place-items-center bg-black relative"><Loading /></div>
+  if(loading) return <div className="h-screen w-full grid place-items-center relative z-10">
+    <motion.div initial={{opacity: 0}} animate={{opacity: .9, background: '#000000'}} className={`absolute -inset-0.5`}></motion.div>
+    <Loading />
+  </div>
 
   return (
       <section className="h-screen w-full relative md:p-20 max-lg:grid max-lg:place-content-center">
@@ -38,7 +43,7 @@ const SingleProject = () => {
                   ))
                 }
               </ul>
-              <p className="text-white text-xs md:text-sm">{data.description}</p>
+              <p className="text-white text-xs md:text-sm">{i18n.language === 'es' ? data.description.es : data.description.en}</p>
               {
                 data.url &&
                 <div className='text-white'><strong>URL del proyecto:</strong> {data.url}</div>

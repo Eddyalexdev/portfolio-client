@@ -65,17 +65,16 @@ const Project = ({setData, title, date, images, setColor, color, id}: ProjectPro
             <div className="relative grid lg:place-items-center">
               {
                 images &&
-                images.map((image: string, index: number) => {
-                  switch (index) {
-                    case 0:
-                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} className={`shadow max-lg:h-[150px] lg:max-h-[200px] h-full object-cover max-w-xs transition-all relative z-10`} src={image} alt="" />
-                    case 1:
-                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'left'} className={`max-lg:hidden shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} src={image} alt="" />
-                    case 2:
-                      return <motion.img key={image} whileHover={{scale: 1.2}} variants={variants} animate={!hover ? 'center':'right'} className={`max-lg:hidden shadow max-h-[200px] h-full object-cover max-w-xs transition-all absolute`} src={image} alt="" />
-                    default:
-                      return
-                }})
+                <div className="w-full h-[200px] overflow-hidden">
+                  <motion.img 
+                    key={images[0]} 
+                    whileHover={{scale: 1.2}} 
+                    variants={variants} 
+                    className={`shadow w-full object-cover max-w-xs transition-all relative z-10 ${hover ? 'saturate-100':'saturate-0'}`} 
+                    src={images[0]} 
+                    alt="" 
+                  />
+                </div>
               }
             </div>
             <div className="flex flex-col p-2 lg:hidden">

@@ -15,7 +15,7 @@ const Tooltip = ({data}: TooltipProps) => {
 
   useEffect(() => {
     const handleMouseMovement = (e: any) => {
-      y.set(e.pageY - 480)
+      y.set(e.pageY - 260)
     }
 
     window.addEventListener('mousemove', handleMouseMovement)

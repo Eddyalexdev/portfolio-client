@@ -3,7 +3,7 @@ import {motion} from 'framer-motion'
 
 const Loading = () => {
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-8 relative z-10">
       <div className="rounded-full grid place-items-center relative z-10">
         <div className="bg-black w-[25px] h-[25px] absolute z-10 rounded-full" />
         <div className="absolute bg-white w-[35px] h-[35px] rounded-full z-[-1]" />
