@@ -15,7 +15,7 @@ export default function Home() {
     if(e.deltaY > 0) {
       setTimeout(() => {
         router.push('about')
-      }, 100)
+      }, 200)
     }
   }
 
