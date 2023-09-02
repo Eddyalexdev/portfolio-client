@@ -39,7 +39,7 @@ const CarrouselImages = ({data, loading}: Props) => {
     return (
         <>
             <div className='col-span-4 lg:h-[500px] overflow-auto border-b border-white p-5'>
-                <motion.img className='w-full object-contain' src={fullImage} alt="" />
+              <img className='w-full object-contain' src={fullImage} alt="" loading="lazy" />
             </div>
 
             <div className="w-full relative col-span-6 overflow-hidden max-xl:hidden">
@@ -49,7 +49,7 @@ const CarrouselImages = ({data, loading}: Props) => {
                         <span>Loading...</span>
                         :
                         data.map((image: string, i: number) => 
-                            <Image key={image} image={image} setFullImage={setFullImage} fullImage={fullImage}/>
+                          <Image key={image} image={image} setFullImage={setFullImage} fullImage={fullImage}/>
                         )
                     }
                 </motion.div>
