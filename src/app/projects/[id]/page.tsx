@@ -5,7 +5,7 @@ import useConsult from '@/hooks/useConsult'
 import { getProject } from '@/services/projects'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 

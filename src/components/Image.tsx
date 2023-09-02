@@ -16,7 +16,6 @@ const Image = ({image, setFullImage, fullImage}: Props) => {
 
   const handleChangeImage = () =>{
     setFullImage(image)
-    console.log(image)
   }
 
   return (

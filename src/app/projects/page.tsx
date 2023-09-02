@@ -3,8 +3,6 @@
 import useConsult from "@/hooks/useConsult"
 import { getProjects } from "@/services/projects"
 import { Projects as AllProjects } from "@/components"
-import { useRouter } from "next/navigation"
-import MouseAnimated from "@/components/MouseAnimated"
 import Link from "next/link"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 

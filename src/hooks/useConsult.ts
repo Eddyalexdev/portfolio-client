@@ -1,19 +1,17 @@
 "use client"
-import { AxiosResponse } from "axios"
 import { useEffect, useMemo, useState } from "react"
 
 interface useConsultProps {
-  consult: Promise<AxiosResponse<any, any>>,
+  consult: Promise<any>,
   dependency?: string
 }
 
 const useConsult = ({consult, dependency}: useConsultProps) => {
   const [data, setData] = useState([]) as any
   const [loading, setLoading] = useState(true)
-  const response = useMemo(async () => await consult, [dependency])
 
   useEffect(() => {
-    response
+    consult
       .then((item: any) => { 
         setData(item)
         setLoading(false)

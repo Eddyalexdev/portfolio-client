@@ -11,10 +11,6 @@ interface ProjectsProps {
   loading?: boolean
 }
 
-export const getStaticProps = async () => {
-
-}
-
 const Projects = ({data, loading}: ProjectsProps) => {
   const [projectInfo, setProjectInfo] = useState({title: "", date: ""})
   const [color, setColor] = useState('')

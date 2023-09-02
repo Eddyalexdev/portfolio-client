@@ -1,9 +1,12 @@
-import { Language } from "@/types/languages.type"
 import axios from 'axios'
 
 const allLanguages = async () => {
-  const languages = await fetch('https://portfolio-server-pcv6.onrender.com/api/languages', {next: {revalidate: 60}})
-  return languages.json()
+  try {
+    const languages = await fetch('https://portfolio-server-pcv6.onrender.com/api/languages', {next: {revalidate: 60}})
+    return languages.json()
+  } catch(e) {
+    console.log('error ocurred with languages')
+  }
 }
 
 const createLanguages = async (data: any) => {
