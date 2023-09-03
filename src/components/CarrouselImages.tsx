@@ -1,3 +1,5 @@
+"use client"
+
 import { Image } from '@/components'
 import {animate, motion, useAnimationControls, useMotionTemplate, useMotionValue, useSpring, useTime, useTransform, useWillChange} from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'

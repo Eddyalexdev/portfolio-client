@@ -1,5 +1,4 @@
 "use client"
-import Link from "next/link";
 import {AiOutlineGithub, AiOutlineLinkedin} from 'react-icons/ai'
 import {motion} from 'framer-motion'
 import { useTranslation } from "react-i18next";
@@ -44,7 +43,7 @@ export default function Home() {
               transition={{delay: .9}}
               className="text-white text-2xl"
             >
-              <Link href="https://github.com/Eddyalexdev" target="_blank"><AiOutlineGithub /></Link>
+              <a href="https://github.com/Eddyalexdev" target="_blank"><AiOutlineGithub /></a>
             </motion.li>
             <motion.li 
               initial={{opacity: 0, y: 100}}
@@ -52,7 +51,7 @@ export default function Home() {
               transition={{delay: .8}}
               className="text-white text-2xl"
             >
-              <Link href="https://www.linkedin.com/in/eddy-chambi-6111901a6/" target="_blank"><AiOutlineLinkedin /></Link>
+              <a href="https://www.linkedin.com/in/eddy-chambi-6111901a6/" target="_blank"><AiOutlineLinkedin /></a>
             </motion.li>
           </ul>
           <MouseAnimated text="About"/>
