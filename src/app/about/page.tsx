@@ -30,7 +30,7 @@ const About = () => {
   return (
     <>
       <motion.section onWheel={handleChangePage} onTouchMove={handleChangePage} style={{x}} className="w-full h-screen grid place-items-center relative z-10">
-        <div className="grid sm:grid-cols-6 sm:grid-rows-3 relative">
+        <div className="md:grid sm:grid-cols-6 sm:grid-rows-3 relative">
           <motion.div initial={{opacity: 0}} animate={{opacity: .4}} transition={{delay: .8}} className="opacity-[.4] bg-gradient-to-r from-white to-white absolute bg-white -inset-0.5 blur-md"></motion.div>
           <motion.div 
             initial={{height: 0}}
@@ -67,6 +67,30 @@ const About = () => {
                 <li className="text-white"><a target="_blank" href="mailto:eddyalex.dev@gmail.com" className="flex items-center gap-2 underline"><AiOutlineMail /> Eddyalex.dev@gmail.com</a></li>
                 <li className="text-white"><a target="_blank" href="https://api.whatsapp.com/send?phone=59179536443" className="flex items-center gap-2 underline"><AiOutlineWhatsApp /> +591 79536443</a></li>
               </ul>
+            </div>
+          </motion.div>
+          <motion.div 
+            initial={{height: 0}}
+            animate={{height: 'auto'}}
+            transition={{delay: .8}}
+            className="overflow-hidden col-span-6 bg-black opacity-75 -mt-[1px] w-full"
+          >
+            <div className="border border-white w-full h-full p-4">
+              <h2 className="text-white mb-2">{t("about.jobs")}</h2>
+              <div className="grid grid-cols-9 w-full">
+                <div className="col-span-3 flex items-center justify-center flex-col gap-1">
+                  <img src="https://logicoapp.com/assets/img/isotipo.svg" alt="" className="max-w-[80px]" />
+                  <span className="text-white">LOGICO</span>
+                </div>
+                <div className="col-span-3 flex items-center justify-center flex-col gap-1">
+                  <img src="https://www.medible.cl/static/media/Logo.352f4f00.svg" alt="" className="max-w-[150px] bg-white" />
+                  <span className="text-white">MEDIBLE</span>
+                </div>
+                <div className="col-span-3 flex items-center justify-center flex-col gap-1">
+                  <img src="https://mobarmy.dev/wp-content/uploads/2021/02/cropped-logotipo_cuadrado-e1621345382503.jpg" alt="" className="max-w-[150px]" />
+                  <span className="text-white">MOB ARMY</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

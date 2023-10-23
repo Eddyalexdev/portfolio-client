@@ -1,7 +1,17 @@
+"use client"
+
+import { usePathname } from "next/navigation"
+import {motion} from 'framer-motion'
+
 const Navigation = () => {
+    const location = usePathname()
     return (
-        <ul className="fixed top-0 bottom-0 my-auto right-10 flex flex-col gap-4 items-center justify-center">
-            <li className="border border-white rounded-full w-[15px] h-[15px]" />
+        <ul className="flex flex-col gap-4">
+            <motion.li 
+                initial={{}}
+                animate={{}}
+                className="border border-white rounded-full w-[15px] h-[15px]"
+            ></motion.li>
         </ul>
     )
 }

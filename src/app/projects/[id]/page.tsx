@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 const getData = async (id: string) => {
-  const project = await fetch(`https://portfolio-server-pcv6.onrender.com/api/projects/${id}`, { next: {revalidate: 3600} })
+  const project = await fetch(`https://portfolio-server-pcv6.onrender.com/api/projects/${id}`, { next: { revalidate: 3600 } })
   return project.json()
 }
 

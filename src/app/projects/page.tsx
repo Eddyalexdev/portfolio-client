@@ -3,7 +3,7 @@ import Link from "next/link"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 
 const getData = async () => {
-  const data = await fetch("https://portfolio-server-pcv6.onrender.com/api/projects", {next: {revalidate: 3600}})
+  const data = await fetch("https://portfolio-server-pcv6.onrender.com/api/projects", { next: {revalidate: 3600} })
   return data.json()
 }
 

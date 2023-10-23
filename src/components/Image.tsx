@@ -15,11 +15,12 @@ const Image = ({image, setFullImage, fullImage}: Props) => {
   const ref = useRef(null)
 
   const handleChangeImage = () =>{
+    console.log(image)
     setFullImage(image)
   }
 
   return (
-    <motion.div onMouseEnter={handleChangeImage} className="min-w-[350px] h-full left-0 top-0 relative p-2">
+    <motion.div onClick={handleChangeImage} className="min-w-[350px] h-full left-0 top-0 relative p-2">
       {
         !imageCharged &&
         <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{repeat: Infinity, duration: 1, repeatType: "reverse"}} className="bg-gray-100 w-full h-full absolute lef-0 top-0 z-20 text-gray-400 text-3xl grid place-items-center">

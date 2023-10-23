@@ -1,8 +1,10 @@
 "use client"
 
 import { Image } from '@/components'
+import Img from 'next/image'
 import {animate, motion, useAnimationControls, useMotionTemplate, useMotionValue, useSpring, useTime, useTransform, useWillChange} from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import { AiFillFileImage } from 'react-icons/ai'
 
 interface Props {
     data: string[],
@@ -13,6 +15,7 @@ const CarrouselImages = ({data, loading}: Props) => {
     const [fullImage, setFullImage] = useState('')
     const imagesRef = useRef(null) as any
     const [isActivated, setIsActivated] = useState(false)
+    const [fullImageCharged ,setFullImageCharged] = useState(false)
 
     const controls = useAnimationControls()
 
@@ -41,7 +44,19 @@ const CarrouselImages = ({data, loading}: Props) => {
     return (
         <>
             <div className='col-span-4 lg:h-[500px] overflow-auto border-b border-white p-5'>
-              <img className='w-full object-contain' src={fullImage} alt="" loading="lazy" />
+                {
+                    fullImageCharged &&
+                    <motion.div 
+                        initial={{opacity: 0}} 
+                        animate={{opacity: 1}} 
+                        transition={{repeat: Infinity, duration: 1, repeatType: "reverse"}} 
+                        className="bg-gray-100 w-full h-full absolute lef-0 top-0 z-20 text-gray-400 text-3xl grid place-items-center"
+                    >
+                        <AiFillFileImage />
+                    </motion.div>
+                }
+
+                <img className='w-full object-contain' src={fullImage} alt="" loading="lazy" />
             </div>
 
             <div className="w-full relative col-span-6 overflow-hidden max-xl:hidden">
@@ -51,7 +66,7 @@ const CarrouselImages = ({data, loading}: Props) => {
                         <span>Loading...</span>
                         :
                         data.map((image: string, i: number) => 
-                          <Image key={image} image={image} setFullImage={setFullImage} fullImage={fullImage}/>
+                            <Image key={image} image={image} setFullImage={setFullImage} fullImage={fullImage}/>
                         )
                     }
                 </motion.div>

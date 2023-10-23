@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className="bg-black w-full h-screen overflow-hidden">
         <Container>
           {children}

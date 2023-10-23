@@ -5,15 +5,15 @@ import {motion} from 'framer-motion'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 const Technologies = () => {
-    const isMobile = useMediaQuery('(max-width:750px)')
+    const isMobile = useMediaQuery('(max-width:768px)')
 
     return (
-        <div className="p-4 border border-white max-h-[400px] overflow-hidden flex sm:grid gap-6">
+        <div className="p-4 border border-white max-h-[400px] overflow-hidden flex md:grid gap-6">
             <motion.ul 
                 initial={{y: 0, x: 0}}
                 animate={{y: isMobile ? 0 : '-100%', x: isMobile ? '-100%' : 0}}
                 transition={{repeat: Infinity, duration: 25, ease: 'linear'}}
-                className="flex sm:flex-col items-center gap-6 justify-center"
+                className="flex md:flex-col items-center gap-6 justify-center"
             >
                 <li className="text-white text-3xl">
                     <BiLogoTypescript />
@@ -62,7 +62,7 @@ const Technologies = () => {
                 initial={{y: 0, x: 0}}
                 animate={{y: isMobile ? 0 : '-100%', x: isMobile ? '-100%' : 0}}
                 transition={{repeat: Infinity, duration: 25, ease: 'linear'}}
-                className="flex sm:flex-col items-center gap-6 justify-center"
+                className="flex md:flex-col items-center gap-6 justify-center"
             >
                 <li className="text-white text-3xl">
                     <BiLogoTypescript />
