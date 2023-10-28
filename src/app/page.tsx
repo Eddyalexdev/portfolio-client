@@ -1,6 +1,6 @@
 "use client"
 import {AiOutlineGithub, AiOutlineLinkedin} from 'react-icons/ai'
-import {motion, scroll} from 'framer-motion'
+import {motion} from 'framer-motion'
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import MouseAnimated from "@/components/MouseAnimated";
@@ -9,7 +9,6 @@ export default function Home() {
   const {t} = useTranslation('global')
   const router = useRouter()
 
-  scroll(progress => console.log(progress))
   const handleChangePage = (e: any) => {
 
     if(e.deltaY > 0) {
