@@ -1,8 +1,11 @@
 import axios from 'axios'
 
+const url = process.env.API_URL || "https://portfolio-server-pcv6.onrender.com/api"
+const localUrl = "http://localhost:8081/api"
+
 const allLanguages = async () => {
   try {
-    const languages = await fetch('https://portfolio-server-pcv6.onrender.com/api/languages', {next: {revalidate: 60}})
+    const languages = await fetch(url + '/languages', {next: {revalidate: 60}})
     return languages.json()
   } catch(e) {
     console.log('error ocurred with languages')
@@ -10,7 +13,7 @@ const allLanguages = async () => {
 }
 
 const createLanguages = async (data: any) => {
-  const language = await axios.post('https://portfolio-server-pcv6.onrender.com/api/languages', data, {
+  const language = await axios.post(url +'/languages', data, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }

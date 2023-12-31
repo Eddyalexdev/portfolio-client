@@ -3,13 +3,18 @@
 import useConsult from '@/hooks/useConsult'
 import { allLanguages } from '@/services/languages'
 import { createProject } from '@/services/projects'
-import { useState } from 'react'
-import {useForm} from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import {set, useForm} from 'react-hook-form'
+
+const getData = async () => {
+  return await fetch("https://portfolio-server-pcv6.onrender.com/api/languages")
+}
 
 const CreateProject = () => {
   const {handleSubmit, register} = useForm()
   const {loading, data} = useConsult({consult: allLanguages()})
   const [languages, setLanguages] = useState<Array<string>>([])
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleCreateProject = (data: any) => {
     const description = {
@@ -40,11 +45,20 @@ const CreateProject = () => {
     setLanguages([...array])
   }
 
+  useEffect(() => {
+    const admin = localStorage.getItem("admin")
+    if (admin) {
+      setIsAdmin(true)
+    }
+
+  }, [])
+
+  if (isAdmin) 
   return (
     <section className="border border-white w-full h-screen relative grid place-content-center">
       <div className="bg-black absolute w-full h-full opacity-75"></div>
       <h2 className="text-white relative text-xl mb-2">Crear Nuevo Proyecto</h2>
-      <form onSubmit={handleSubmit(handleCreateProject)} className="relative grid gap-8 w-[400px]">
+      <form onSubmit={handleSubmit(handleCreateProject)} className="relative grid gap-8 w-[400px] overflow-auto">
         <label className="text-white flex flex-col gap-2">
           <span>Titulo:</span>
           <input {...register('title')} className="border-b bg-transparent" />
@@ -57,7 +71,7 @@ const CreateProject = () => {
           <span>Lenguajes y Tecnologias:</span>
           <div className="flex items-center gap-4 flex-wrap">
             {
-              !loading &&
+              !loading && data &&
               data.map((language: any) => <label key={language._id}><input onChange={handleSelect} value={language._id} type="checkbox"/> {language.slug}</label>)
             }
           </div>
@@ -86,6 +100,8 @@ const CreateProject = () => {
       </form>
     </section>
   )
+  else 
+  return <span>Regrese al sitio web</span>
 }
 
 export default CreateProject
