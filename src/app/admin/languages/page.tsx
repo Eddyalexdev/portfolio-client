@@ -38,7 +38,7 @@ const Languages = () => {
                 <tbody>
                     {
                         languages.map((language: Language) => {
-                            return <tr>
+                            return <tr key={`${language._id}`}>
                                 <td>{language.slug}</td>
                                 <td>
                                     <button onClick={() => handleDeleteLanuage(language._id)}>Eliminar lenguaje</button>

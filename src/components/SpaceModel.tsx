@@ -1,17 +1,19 @@
 "use client"
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { PerspectiveCamera, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { motion } from 'framer-motion-3d'
 import { usePathname, useRouter } from 'next/navigation'
 import { Vector3 } from 'three'
 import useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
+import { useAnimation } from 'framer-motion'
 
 export function SpaceModel(props: any) {
   const { nodes, materials } = useGLTF('/models/scene.gltf') as any
   const [scale, setScale] = useState(100)
   const [isHover, setIsHover] = useState(false)
+  const [isHoverHome, setIsHoverHome] = useState(false)
   const ref = useRef() as any;
   const projectsRef = useRef() as any;
   const aboutRef = useRef() as any;
@@ -20,12 +22,15 @@ export function SpaceModel(props: any) {
   const refWaves = useRef() as any;
   const router = useRouter()
   const pathname = usePathname()
+  const controls = useAnimation();
 
   const isMobile = useMediaQuery('(max-width:950px)')
 
   useFrame((state) => {
-    ref.current.rotation.y += 0.001
-    refWaves.current.rotation.z -= 0.0005
+    if(!isHoverHome) {
+      ref.current.rotation.y += 0.0003
+      refWaves.current.rotation.z -= 0.0005
+    }
 
     if(isHover !== true) {
       projectsRef.current.rotation.y += 0.001
@@ -54,19 +59,31 @@ export function SpaceModel(props: any) {
       planetRef.current.rotation.z += 0.006
       planetRef.current.rotation.x += 0.006
     }
+
     return null
   })
+
+  useEffect(() => {
+    if(isHoverHome && pathname !== "/about") {
+      controls.start({scale: 110, transition: { duration: .5, repeatType: "reverse", repeat: Infinity }})
+    } else {
+      controls.start({scale: 100})
+    }
+  }, [isHoverHome])
 
   return (
     <>
       <group>
         <group scale={0.01}>
           <motion.group 
-            whileHover={{ scale: 110}}
+            animate={controls}
+            initial={{scale: 100}}
             rotation={[-Math.PI / 2, 0, 0]} 
             scale={scale}
             ref={aboutRef}
             onClick={() => router.push('/about')}
+            onPointerEnter={() => setIsHoverHome(true)}
+            onPointerLeave={() => setIsHoverHome(false)}
           >
             <motion.group animate={{scale: pathname === '/about' && isMobile ?  .6 : 1 ,x: pathname === '/about' && !isMobile ? -2: isMobile && pathname ==='/about' ? .6:0, rotateZ: pathname === '/about' && !isMobile ? .5 : 0, y: pathname === '/about' ? -1.5 : 0, z: pathname === '/about' && isMobile ? 2 : 0}} >
               <mesh geometry={nodes.body_Material001_0.geometry} material={materials['Material.001']} />

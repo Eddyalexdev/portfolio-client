@@ -2,24 +2,13 @@
 import {AiOutlineGithub, AiOutlineLinkedin} from 'react-icons/ai'
 import {motion} from 'framer-motion'
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
 import MouseAnimated from "@/components/MouseAnimated";
 
 export default function Home() {
   const {t} = useTranslation('global')
-  const router = useRouter()
-
-  const handleChangePage = (e: any) => {
-
-    if(e.deltaY > 0) {
-      setTimeout(() => {
-        router.push('about')
-      }, 500)
-    }
-  }
 
   return (
-      <div onWheel={handleChangePage} onTouchMove={handleChangePage} className="w-full h-screen grid place-items-center relative">
+      <div className="w-full h-screen grid place-items-center relative">
         <div>
         </div>
         <div className="relative z-10 text-center">
@@ -54,7 +43,6 @@ export default function Home() {
               <a href="https://www.linkedin.com/in/eddy-chambi-6111901a6/" target="_blank"><AiOutlineLinkedin /></a>
             </motion.li>
           </ul>
-          <MouseAnimated text="About"/>
         </div>
       </div>
   )
